@@ -1,6 +1,9 @@
 import { Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout'
+import ProtectedRoute from './components/ProtectedRoute'
 import Dashboard from './pages/Dashboard'
+import LoginPage from './pages/LoginPage'
+import CompaniesPage from './pages/CompaniesPage'
 
 function Placeholder({ title }: { title: string }) {
   return (
@@ -14,9 +17,11 @@ function Placeholder({ title }: { title: string }) {
 export default function App() {
   return (
     <Routes>
-      <Route element={<Layout />}>
+      <Route path="/login" element={<LoginPage />} />
+
+      <Route element={<ProtectedRoute><Layout /></ProtectedRoute>}>
         <Route index element={<Dashboard />} />
-        <Route path="companies" element={<Placeholder title="Companies" />} />
+        <Route path="companies" element={<CompaniesPage />} />
         <Route path="pipeline" element={<Placeholder title="Pipeline" />} />
         <Route path="partnerships" element={<Placeholder title="Partnerships" />} />
         <Route path="follow-ups" element={<Placeholder title="Follow-ups" />} />
